@@ -1,3 +1,4 @@
+"use client";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -6,10 +7,7 @@ import Footer from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Eagle Air - Aviation Training Excellence",
-  description: "Premier aviation training school offering comprehensive flight training programs, from private pilot licenses to advanced certifications.",
-};
+
 
 export default function RootLayout({
   children,

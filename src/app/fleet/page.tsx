@@ -1,8 +1,16 @@
+"use client";
+
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import Aircraft3D from '@/components/3d/Aircraft3D'
+
+const ThreeCanvas = dynamic(() => 
+  import('@/components/3d/ThreeScene').then((mod) => mod.default), 
+  { ssr: false }
+)
 
 const fleetData = [
   {
@@ -108,16 +116,13 @@ export default function FleetPage() {
                       alt={aircraft.type}
                       fill
                       className="object-cover"
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority={index === 0}
                     />
                   </div>
                   <div className="h-64 lg:h-96 rounded-lg overflow-hidden bg-gray-900">
-                    <Canvas>
-                      <PerspectiveCamera makeDefault position={[0, 2, 5]} />
-                      <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-                      <ambientLight intensity={0.5} />
-                      <directionalLight position={[10, 10, 5]} intensity={1} />
-                      <Aircraft3D />
-                    </Canvas>
+                    <ThreeCanvas />
                   </div>
                 </div>
 

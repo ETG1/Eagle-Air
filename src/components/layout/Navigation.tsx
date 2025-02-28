@@ -48,7 +48,7 @@ export default function Navigation() {
                 {link.name}
               </Link>
             ))}
-            <button className="button-primary">Book a Flight</button>
+            <Link href="/booking" className="button-primary">Book a Flight</Link>
           </div>
 
           {/* Mobile menu button */}
@@ -87,12 +87,13 @@ export default function Navigation() {
                   {link.name}
                 </Link>
               ))}
-              <button 
+              <Link 
+                href="/booking" 
                 className="w-full button-primary mt-4"
                 onClick={() => setIsOpen(false)}
               >
                 Book a Flight
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}

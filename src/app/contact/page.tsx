@@ -1,10 +1,20 @@
 import { motion } from 'framer-motion'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import L from 'leaflet'
+import type { LatLngTuple } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
+// Fix Leaflet marker icon issue
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: '/images/marker-icon-2x.png',
+  iconUrl: '/images/marker-icon.png',
+  shadowUrl: '/images/marker-shadow.png',
+});
+
 // Coordinates for Eagle Air's location (example)
-const position = [-26.1392, 28.2460] // Johannesburg area
+const position: LatLngTuple = [-26.1392, 28.2460] // Johannesburg area
 
 export default function ContactPage() {
   return (

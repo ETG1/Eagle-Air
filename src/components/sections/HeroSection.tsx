@@ -1,21 +1,20 @@
 "use client";
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { motion } from 'framer-motion'
-import Aircraft3D from '@/components/3d/Aircraft3D'
+import dynamic from 'next/dynamic'
+
+
+const ThreeCanvas = dynamic(
+  () =>
+    import('@/components/3d/ThreeScene').then((mod) => mod.default),
+  { ssr: false }
+);
 
 export default function HeroSection() {
   return (
     <section className="relative h-screen w-full">
       {/* 3D Canvas Background */}
       <div className="absolute inset-0">
-        <Canvas>
-          <PerspectiveCamera makeDefault position={[0, 2, 5]} />
-          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <Aircraft3D />
-        </Canvas>
+        <ThreeCanvas />
       </div>
 
       {/* Content Overlay */}
